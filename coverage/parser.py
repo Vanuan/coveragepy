@@ -24,7 +24,7 @@ class CodeParser(object):
         assert text or filename, "CodeParser needs either text or filename"
         self.filename = filename or "<code>"
         self.text = text
-        if not self.text:
+        if self.text is None:
             try:
                 sourcef = open_source(self.filename)
                 try:
@@ -34,7 +34,7 @@ class CodeParser(object):
             except IOError:
                 _, err, _ = sys.exc_info()
                 raise NoSource(
-                    "No source for code: '%s': %s" % (self.filename, err)
+                    "parser.py: No source for code: '%s': %s" % (self.filename, err)
                     )
 
         # Scrap the BOM if it exists.
@@ -329,7 +329,7 @@ class ByteParser(object):
             self.code = code
             self.text = text
         else:
-            if not text:
+            if text is None:
                 assert filename, "If no code or text, need a filename"
                 sourcef = open_source(filename)
                 try:

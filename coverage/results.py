@@ -81,15 +81,14 @@ class Analysis(object):
         try_exts = TRY_EXTS.get(ext)
         if not try_exts:
             return filename, None
-
         for try_ext in try_exts:
             try_filename = base + try_ext
             if os.path.exists(try_filename):
                 return try_filename, None
             source = self.coverage.file_locator.get_zip_data(try_filename)
-            if source:
+            if source is not None:
                 return try_filename, source
-        raise NoSource("No source for code: '%s'" % filename)
+        raise NoSource("results.py: No source for code: '%s'" % filename)
 
     def missing_formatted(self):
         """The missing line numbers, formatted nicely.

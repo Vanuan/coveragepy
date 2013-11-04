@@ -121,7 +121,7 @@ class CodeUnit(object):
 
         # Couldn't find source.
         raise CoverageException(
-            "No source for code '%s'." % self.filename
+            "codeunit.py: No source for code '%s'." % self.filename
             )
 
     def should_be_python(self):
