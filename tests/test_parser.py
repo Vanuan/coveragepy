@@ -3,6 +3,7 @@
 import textwrap
 from tests.coveragetest import CoverageTest
 from coverage.parser import CodeParser
+from coverage.parser import ByteParser
 
 
 class ParserTest(CoverageTest):
@@ -129,3 +130,9 @@ class ParserFileTest(CoverageTest):
             """)
         cp = self.parse_file("encoded.py")
         cp.exit_counts()
+
+    def test_byte_empty_file(self):
+        bp = ByteParser(text="", filename="<code>")
+
+    def test_code_empty_file(self):
+        cp = CodeParser(text="", filename="<code>")

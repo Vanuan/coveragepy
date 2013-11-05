@@ -58,3 +58,15 @@ class NumbersTest(CoverageTest):
         self.assertEqual(n9999.pc_covered_str, "0.1")
         self.assertEqual(n10000.pc_covered_str, "0.0")
         Numbers.set_precision(0)
+
+
+class AnalysisTest(CoverageTest):
+
+    def test_find_source(self):
+        # coverage run import_egg1.py
+        # coverage html
+        # where import_egg1.py contains import egg1
+        # ???
+        # analysis = Analysis(egg1)
+        # analysis.find_source(egg1.__file__)
+
